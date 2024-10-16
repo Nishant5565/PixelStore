@@ -8,6 +8,7 @@
   import { ThemeContext } from "../../Pages/ThemeContext";
   import themeConfig from "../../Functions/theme";
   import "./Navbar.css";
+  import { site_name } from "../../Functions/Constants";
   
   const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -82,7 +83,7 @@
           <div className="flex items-center space-x-4">
             <Link to="/" className="flex items-center space-x-2">
               {/* <img src="/path/to/logo.png" alt="logo" className="h-8" /> */}
-              <span className={`text-lg font-semibold ${currentTheme.text}`}>eCommerce</span>
+              <span className={`text-lg font-semibold ${currentTheme.text}`}>{site_name}</span>
             </Link>
           </div>
   
