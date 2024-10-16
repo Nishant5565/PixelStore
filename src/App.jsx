@@ -8,7 +8,7 @@ function App() {
 
 
   return (
-    <Router basename='/'>
+    <Router basename='/eCom'>
       <Routes>
         <Route path="/" element={<Layout />}>
         </Route>        
