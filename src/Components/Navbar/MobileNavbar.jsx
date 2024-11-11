@@ -5,12 +5,15 @@ import { CiSearch } from 'react-icons/ci';
 import { FiShoppingCart, FiBell, FiUser } from 'react-icons/fi';
 import SearchBar from "../SearchBar/SearchBar";
 import { site_name } from '../../Functions/Constants';
+import themeConfig from '../../Functions/theme';
 
 const MobileNavbar = ({ isLoggedIn, isOpened, handleClick, isSearchOpen, setIsSearchOpen, theme, logout, toggleTheme }) => {
+  const currentTheme = themeConfig[theme];
+
   return (
     <>
       {/* Hamburger */}
-      <div className={`flex  items-center h-16 w-screen justify-around z-[10] ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'} shadow-md px-4`}>
+      <div className={`flex items-center h-16 w-screen justify-between z-[10] ${currentTheme.background} ${currentTheme.text} shadow-md px-4`}>
         <div className="flex items-center gap-4">
           {isLoggedIn && (
             <>
@@ -54,16 +57,12 @@ const MobileNavbar = ({ isLoggedIn, isOpened, handleClick, isSearchOpen, setIsSe
           {site_name}
         </Link>
         <div>
-          <button onClick={() => setIsSearchOpen(true)} className="text-xl">
-            <CiSearch size={24} />
-          </button>
         </div>
-
       </div>
 
       {isSearchOpen ? (
         <div
-          className={`search-bar-mobile z-50 fixed top-0 w-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'} h-screen transform transition-transform duration-500 ${
+          className={`search-bar-mobile z-50 fixed top-0 w-screen ${currentTheme.background} ${currentTheme.text} h-screen transform transition-transform duration-500 ${
             isSearchOpen ? "slide-in" : ""
           }`}
         >
@@ -83,12 +82,12 @@ const MobileNavbar = ({ isLoggedIn, isOpened, handleClick, isSearchOpen, setIsSe
           onClick={() => setIsSearchOpen(true)}
           className="search-icon z-50 right-4 top-4 fixed slide-out"
         >
-          {/* <CiSearch size={30} /> */}
+          <CiSearch size={30} />
         </div>
       )}
 
       <nav
-        className={`mobile-navbar ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'} shadow-md transform transition-transform duration-500 fixed w-full top-0 z-10 ${
+        className={`mobile-navbar ${currentTheme.background} ${currentTheme.text} shadow-md transform transition-transform duration-500 fixed w-full top-0 z-10 ${
           !isOpened ? "-translate-x-full" : "translate-x-0"
         }`}
       >
@@ -122,7 +121,7 @@ const MobileNavbar = ({ isLoggedIn, isOpened, handleClick, isSearchOpen, setIsSe
                 </Link>
                 <Link
                   to="/signup"
-                  className="bg-teal-700 text-white px-5 py-2 rounded-lg"
+                  className={`px-5 py-2 rounded-lg ${currentTheme.buttonBackground} ${currentTheme.buttonText}`}
                   onClick={handleClick}
                 >
                   Signup
@@ -133,7 +132,7 @@ const MobileNavbar = ({ isLoggedIn, isOpened, handleClick, isSearchOpen, setIsSe
                 <Link to="/profile" className="px-5" onClick={handleClick}>
                   Profile
                 </Link>
-                <button onClick={logout} className="bg-teal-700 text-white px-4 py-3 rounded-lg">
+                <button onClick={logout} className={`px-4 py-3 rounded-lg ${currentTheme.buttonBackground} ${currentTheme.buttonText}`}>
                   Log out
                 </button>
               </>

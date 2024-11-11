@@ -6,21 +6,21 @@ export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
   
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState(localStorage.getItem('PixelTheme') || 'light');
 
   if(theme == 'undefined'){
     setTheme('light');
   }
   
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('PixelTheme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme !== 'dark' ? 'dark' : 'light'));
     document.body.style.backgroundColor = theme == 'dark' ? '#f0f0f0' : '#1f1f1f';
     document.body.style.color = theme == 'dark' ? '#333' : '#f0f0f0';
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('PixelTheme', theme);
   };
 
   const themeConfig = createTheme({
